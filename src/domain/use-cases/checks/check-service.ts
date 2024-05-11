@@ -18,19 +18,33 @@ export class CheckService implements CheckServiceUseCase {
 
   public async execute(url: string): Promise<boolean> {
     try {
+      //Make a call to the passed url
       const req = await fetch(url);
+      //If the response is not ok, throw new Error
       if (!req.ok) throw new Error(`Error on check service ${url}`);
 
-      const log = new LogEntity(
-        `Check service ${url} success`,
-        LogSeverityLevel.low
-      );
+      //Instantiate the new entity with the desired information if it succeeds
+      const log = new LogEntity({
+        message: `Check service ${url} success`,
+        level: LogSeverityLevel.low,
+        origin: "check-service.ts",
+      });
+      //use the repository to send the instantiated log to the datasource
       this.logRepository.saveLog(log);
+      //If a success callback was given, then call it
       this.sucessCallback && this.sucessCallback();
+      //Return true if all ended successfully
       return true;
     } catch (error) {
+      //If there was an error, for example the response to the fetch being not ok, set the error message
       const errorMessage = `${url} is down. Error: ${error}`;
-      const log = new LogEntity(errorMessage, LogSeverityLevel.high);
+      //Instantiate the new entity with the desired information if it fails
+      const log = new LogEntity({
+        message: errorMessage,
+        level: LogSeverityLevel.high,
+        origin: "check-service.ts",
+      });
+      //use the repository to send the instantiated log to the datasource
       this.logRepository.saveLog(log);
       this.errorCallback && this.errorCallback(errorMessage);
       return false;

@@ -11,10 +11,22 @@ importers:
       cron:
         specifier: ^3.1.7
         version: 3.1.7
+      dotenv:
+        specifier: ^16.4.5
+        version: 16.4.5
+      env-var:
+        specifier: ^7.4.2
+        version: 7.4.2
+      nodemailer:
+        specifier: ^6.9.13
+        version: 6.9.13
     devDependencies:
       '@types/node':
         specifier: ^20.12.11
         version: 20.12.11
+      '@types/nodemailer':
+        specifier: ^6.4.15
+        version: 6.4.15
       rimraf:
         specifier: ^5.0.6
         version: 5.0.6
@@ -66,6 +78,9 @@ packages:
 
   '@types/node@20.12.11':
     resolution: {integrity: sha512-vDg9PZ/zi+Nqp6boSOT7plNuthRugEKixDv5sFTIpkE89MmNtEArAShI4mxuX2+UrLEe9pxC1vm2cjm9YlWbJw==}
+
+  '@types/nodemailer@6.4.15':
+    resolution: {integrity: sha512-0EBJxawVNjPkng1zm2vopRctuWVCxk34JcIlRuXSf54habUWdz1FB7wHDqOqvDa8Mtpt0Q3LTXQkAs2LNyK5jQ==}
 
   '@types/strip-bom@3.0.0':
     resolution: {integrity: sha512-xevGOReSYGM7g/kUBZzPqCrR/KYAo+F0yiPc85WFTJa0MSLtyFTVTU6cJu/aV4mid7IffDIWqo69THF2o4JiEQ==}
@@ -153,6 +168,10 @@ packages:
     resolution: {integrity: sha512-58lmxKSA4BNyLz+HHMUzlOEpg09FV+ev6ZMe3vJihgdxzgcwZ8VoEEPmALCZG9LmqfVoNMMKpttIYTVG6uDY7A==}
     engines: {node: '>=0.3.1'}
 
+  dotenv@16.4.5:
+    resolution: {integrity: sha512-ZmdL2rui+eB2YwhsWzjInR8LldtZHGDoQ1ugH85ppHKwpUHL7j7rN0Ti9NCnGiQbhaZ11FpR+7ao1dNsmduNUg==}
+    engines: {node: '>=12'}
+
   dynamic-dedupe@0.3.0:
     resolution: {integrity: sha512-ssuANeD+z97meYOqd50e04Ze5qp4bPqo8cCkI4TRjZkzAUgIDTrXV1R8QCdINpiI+hw14+rYazvTRdQrz0/rFQ==}
 
@@ -164,6 +183,10 @@ packages:
 
   emoji-regex@9.2.2:
     resolution: {integrity: sha512-L18DaJsXSUk2+42pv8mLs5jJT2hqFkFE4j21wOmgbUqsZ2hL72NsUU785g9RXgo3s0ZNgVl42TiHp3ZtOv/Vyg==}
+
+  env-var@7.4.2:
+    resolution: {integrity: sha512-xz2z3C9e89dWiy1dXTcp5UiYQ13i8YhDjeBBTwZbAvqoo10KfSCzAVq2yyzWno9Q/7urgNSVU6suD4ueqgVr8Q==}
+    engines: {node: '>=10'}
 
   fill-range@7.0.1:
     resolution: {integrity: sha512-qOo9F+dMUmC2Lcb4BbVvnKJxTPjCm+RRpe4gDuGrzkL7mEVl/djYSu2OdQ2Pa302N4oqkSg9ir6jaLWJ2USVpQ==}
@@ -265,6 +288,10 @@ packages:
     resolution: {integrity: sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==}
     engines: {node: '>=10'}
     hasBin: true
+
+  nodemailer@6.9.13:
+    resolution: {integrity: sha512-7o38Yogx6krdoBf3jCAqnIN4oSQFx+fMa0I7dK1D+me9kBxx12D+/33wSb+fhOCtIxvYJ+4x4IMEhmhCKfAiOA==}
+    engines: {node: '>=6.0.0'}
 
   normalize-path@3.0.0:
     resolution: {integrity: sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==}
@@ -468,6 +495,10 @@ snapshots:
     dependencies:
       undici-types: 5.26.5
 
+  '@types/nodemailer@6.4.15':
+    dependencies:
+      '@types/node': 20.12.11
+
   '@types/strip-bom@3.0.0': {}
 
   '@types/strip-json-comments@0.0.30': {}
@@ -547,6 +578,8 @@ snapshots:
 
   diff@4.0.2: {}
 
+  dotenv@16.4.5: {}
+
   dynamic-dedupe@0.3.0:
     dependencies:
       xtend: 4.0.2
@@ -556,6 +589,8 @@ snapshots:
   emoji-regex@8.0.0: {}
 
   emoji-regex@9.2.2: {}
+
+  env-var@7.4.2: {}
 
   fill-range@7.0.1:
     dependencies:
@@ -650,6 +685,8 @@ snapshots:
   minipass@7.1.1: {}
 
   mkdirp@1.0.4: {}
+
+  nodemailer@6.9.13: {}
 
   normalize-path@3.0.0: {}
 
