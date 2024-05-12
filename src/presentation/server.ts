@@ -5,16 +5,22 @@ import { LogRepositoryImplementation } from "../infrastructure/repositories/log.
 import { FileSystemDatasource } from "../infrastructure/datasources/file-system.datasource";
 import { EmailService } from "./email/email.service";
 import { SendEmailLogs } from "../domain/use-cases/email/send-email-logs";
+import { MongoLogDatasource } from "../infrastructure/datasources/mongo-log.datasource";
+import { LogSeverityLevel } from "../domain/entities/log.entity";
+import { PostgresDatasource } from "../infrastructure/datasources/postgres-log.datasource";
+import { CheckServiceMultiple } from "../domain/use-cases/checks/check-service-multiple";
 
 //create a new instance of the log repository working with the file system
-const fileSystemLogRepository = new LogRepositoryImplementation(
-  new FileSystemDatasource()
+const logRepository = new LogRepositoryImplementation(
+  // new FileSystemDatasource()
+  //new MongoLogDatasource()
+  new PostgresDatasource()
 );
 
 const emailService = new EmailService();
 
 export class ServerApp {
-  public static start() {
+  public static async start() {
     console.log("Server started...");
     // const url = "https://google.com";
     const url = "http://localhost:3000";
@@ -34,14 +40,30 @@ export class ServerApp {
       `,
     }); */
 
+    // console.log(await logRepository.getLogs(LogSeverityLevel.medium));
+
     //! create a new job that will run every 5 minutes
-    // CronService.createJob("*/5 * * * * *", () => {
+    // CronService.createJob("*/30 * * * * *", () => {
     //   // new CheckService().execute("https://google.com");
     //   new CheckService(
-    //     fileSystemLogRepository,
+    //     logRepository,
     //     () => console.log(`${url} is up!`),
     //     (error) => console.log(error)
     //   ).execute(url);
     // });
+
+    //! create a new job that will run every 5 minutes to multiple datasources
+    const fsRepo = new LogRepositoryImplementation(new FileSystemDatasource());
+    const mongoRepo = new LogRepositoryImplementation(new MongoLogDatasource());
+    const postRepo = new LogRepositoryImplementation(new PostgresDatasource());
+
+    CronService.createJob("*/30 * * * * *", () => {
+      // new CheckService().execute("https://google.com");
+      new CheckServiceMultiple(
+        [fsRepo, mongoRepo, postRepo],
+        () => console.log(`${url} is up!`),
+        (error) => console.log(error)
+      ).execute(url);
+    });
   }
 }
