@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "tsnd --respawn src/app.ts",
+    "dev": "tsnd --respawn --clear src/app.ts",
     "build": "rimraf ./dist && tsc",
     "start": "pnpm run build && node dist/app.js"
   },
@@ -15,14 +15,17 @@
   "devDependencies": {
     "@types/node": "^20.12.11",
     "@types/nodemailer": "^6.4.15",
+    "prisma": "^5.13.0",
     "rimraf": "^5.0.6",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.4.5"
   },
   "dependencies": {
+    "@prisma/client": "5.13.0",
     "cron": "^3.1.7",
     "dotenv": "^16.4.5",
     "env-var": "^7.4.2",
+    "mongoose": "^8.3.4",
     "nodemailer": "^6.9.13"
   }
 }

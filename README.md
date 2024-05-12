@@ -7,11 +7,10 @@ The objective is to create a Network Operations Center (NOC) app and learn clean
 1. Clone the repository
 2. Install dependencies with `pnpm install`
 3. Copy the `template.env` file to `.env` and fill the values
+4. Compose up the data bases
 
 ```
-PORT=3000
-MAILER_EMAIL=your@email.com
-MAILER_PASSWORD=yourpassword
+docker compose up -d
 ```
 
 4. Run the app with `pnpm dev`
