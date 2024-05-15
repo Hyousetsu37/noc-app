@@ -69,6 +69,5 @@ export class FileSystemDatasource implements LogDatasource {
       default:
         throw new Error(`Unknown severity level for logs: ${severityLevel}`);
     }
-    return [];
   }
 }

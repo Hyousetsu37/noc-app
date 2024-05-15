@@ -23,6 +23,7 @@ export class PostgresDatasource implements LogDatasource {
         level: severityLevelMapper[`${level}`] as SeverityLevel,
       },
     });
+    console.log("Postgres log created");
   }
 
   async getLogs(severityLevel: LogSeverityLevel): Promise<LogEntity[]> {

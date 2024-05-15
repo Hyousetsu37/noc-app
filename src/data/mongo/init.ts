@@ -10,9 +10,10 @@ export class MongoDatabase {
     const { mongoUrl, dbName } = options;
     try {
       await mongoose.connect(mongoUrl, { dbName: dbName });
-      console.log("Mongo connection success");
+      // console.log("Mongo connection success");
+      return true;
     } catch (error) {
-      console.log("Mongo connection error");
+      // console.log("Mongo connection error");
       throw error;
     }
   }

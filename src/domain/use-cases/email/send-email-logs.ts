@@ -16,7 +16,7 @@ export class SendEmailLogs implements SendEmailLogs {
       if (!sent) throw new Error("Email log not sent");
       const log = new LogEntity({
         level: LogSeverityLevel.low,
-        message: `Email sent to ${Array.isArray(to) ? to.join(" ") : to} `,
+        message: `Email sent to ${to} `,
         origin: "send-email-logs.ts",
       });
       this.logRepository.saveLog(log);
@@ -25,9 +25,7 @@ export class SendEmailLogs implements SendEmailLogs {
     } catch (error) {
       const log = new LogEntity({
         level: LogSeverityLevel.high,
-        message: `Email not sent to ${
-          Array.isArray(to) ? to.join(" ") : to
-        } due to an error: ${error}`,
+        message: `Email not sent to ${to} due to an error: ${error}`,
         origin: "send-email-logs.ts",
       });
       this.logRepository.saveLog(log);

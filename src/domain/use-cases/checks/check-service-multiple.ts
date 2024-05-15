@@ -11,13 +11,13 @@ type ErrorCallback = ((error: string) => void) | undefined;
 export class CheckServiceMultiple implements CheckServiceUseCase {
   constructor(
     //Depenency inejection
-    private readonly logRepository: LogRepository[],
+    private readonly logRepositories: LogRepository[],
     private readonly sucessCallback: SuccessCallback,
     private readonly errorCallback: ErrorCallback
   ) {}
 
   private callLogs(log: LogEntity) {
-    this.logRepository.forEach((logRepo) => logRepo.saveLog(log));
+    this.logRepositories.forEach((logRepo) => logRepo.saveLog(log));
   }
 
   public async execute(url: string): Promise<boolean> {

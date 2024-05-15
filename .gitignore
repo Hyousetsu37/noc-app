@@ -3,6 +3,7 @@ dist/
 
 #logs
 logs/
+coverage/
 
 #ENV
 .env

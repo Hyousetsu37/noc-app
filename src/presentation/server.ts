@@ -57,13 +57,13 @@ export class ServerApp {
     const mongoRepo = new LogRepositoryImplementation(new MongoLogDatasource());
     const postRepo = new LogRepositoryImplementation(new PostgresDatasource());
 
-    CronService.createJob("*/30 * * * * *", () => {
-      // new CheckService().execute("https://google.com");
-      new CheckServiceMultiple(
-        [fsRepo, mongoRepo, postRepo],
-        () => console.log(`${url} is up!`),
-        (error) => console.log(error)
-      ).execute(url);
-    });
+    // CronService.createJob("*/30 * * * * *", () => {
+    //   // new CheckService().execute("https://google.com");
+    //   new CheckServiceMultiple(
+    //     [fsRepo, mongoRepo, postRepo],
+    //     () => console.log(`${url} is up!`),
+    //     (error) => console.log(error)
+    //   ).execute(url);
+    // });
   }
 }

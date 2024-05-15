@@ -3,14 +3,14 @@ import { envs } from "../../config/plugins/envs.plugin";
 import { LogRepository } from "../../domain/repository/log.repository";
 import { LogEntity, LogSeverityLevel } from "../../domain/entities/log.entity";
 
-interface SendMailOptions {
+export interface SendMailOptions {
   to: string | string[];
   subject: string;
   htmlBody: string;
-  attachments: Attachement[];
+  attachments?: Attachement[];
 }
 
-interface Attachement {
+export interface Attachement {
   filename: string;
   path: string;
 }
